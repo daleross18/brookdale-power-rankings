@@ -355,7 +355,7 @@
    * to the list; a real Enter while the import line is typing completes it and opens the list. A 9 s watchdog
    * force-routes so the boot can never trap the user.
    */
-  function runBoot(onDone) {
+  function runBoot(onDone, instant) {
     let finished = false, watchdog = null, enterNow = null;
     function finish() {
       if (finished) return; finished = true;
@@ -364,6 +364,7 @@
       cancelAnimations();
       try { onDone(); } catch (e) { console.error(e); location.hash = '#/'; }
     }
+    if (instant) { finish(); return; }   // soft reload: straight to the view, no boot
     try {
       const p = pane([el('b', { text: '-bash' })], 'tty0 · 80×24', 'boot');
       const lines = el('div', { class: 'boot-lines' });
@@ -1187,12 +1188,25 @@
     return true;
   }
   let booted = false;
+  /* Soft reload (F5 / Cmd+R) skips the boot + decoy; a hard reload (Cmd+Shift+R), a first visit or a link plays them.
+     Heuristic: on a reload navigation, a hard reload re-downloads every asset (full transferSize) while a soft reload
+     serves the subresources from cache (transferSize 0) or revalidates them (tiny transfer < body size). */
+  function isSoftReload() {
+    try {
+      const nav = performance.getEntriesByType('navigation')[0];
+      if (!nav || nav.type !== 'reload') return false;
+      const res = performance.getEntriesByType('resource').filter((r) => /\/(styles\.css|history\.js|data\.js)(\?|$)/.test(r.name));
+      if (!res.length) return false;
+      return res.every((r) => r.transferSize === 0 || (r.encodedBodySize > 0 && r.transferSize < r.encodedBodySize));
+    } catch (e) { return false; }
+  }
   function init() {
     try { startMatrix(); } catch (e) { console.error(e); }
     try { startStatusBar(); } catch (e) { console.error(e); }
     setTimeout(() => { try { if (!watchDeck()) window.addEventListener('load', watchDeck); } catch (e) { console.error(e); } }, 0);
     window.addEventListener('hashchange', () => { if (booted) render(); });
-    runBoot(() => { booted = true; if (parseHash().view !== 'list') decoyDone = true; render(); });   // direct deep links bypass the decoy reveal
+    const soft = isSoftReload();
+    runBoot(() => { booted = true; if (soft || parseHash().view !== 'list') decoyDone = true; render(); }, soft);   // deep links + soft reloads bypass the decoy reveal
   }
   init();
 })();
