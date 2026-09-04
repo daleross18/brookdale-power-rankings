@@ -1213,6 +1213,7 @@
     setTimeout(() => { try { if (!watchDeck()) window.addEventListener('load', watchDeck); } catch (e) { console.error(e); } }, 0);
     window.addEventListener('hashchange', () => { if (booted) render(); });
     const soft = isSoftReload();
+    try { const nav0 = performance.getEntriesByType('navigation')[0]; if (nav0 && nav0.type === 'reload' && !soft) store.reset(); } catch (e) { /* ignore */ }   // a hard refresh also resets the read checkmarks
     try { const nav = performance.getEntriesByType('navigation')[0]; console.info('[boot] nav=' + (nav ? nav.type : '?') + ' soft=' + soft + ' ' + performance.getEntriesByType('resource').filter((r) => /\/(styles\.css|history\.js|data\.js)(\?|$)/.test(r.name)).map((r) => r.name.split('/').pop().split('?')[0] + ':' + r.transferSize + '/' + r.encodedBodySize).join(' ')); } catch (e) { /* ignore */ }
     runBoot(() => { booted = true; if (soft || parseHash().view !== 'list') decoyDone = true; render(); }, soft);   // deep links + soft reloads bypass the decoy reveal
   }
