@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+  index.html — The Brookdale League · 2026 Preseason Power Rankings
+  Single-page shell for a crisp black-and-green terminal site. No build step, no framework.
+  Load order: data.js → writeups.js → history.js → sim.js → app.js → audio/playlist.js → player.js
+  (all relative paths so the site works from file:// and from a GitHub Pages sub-path).
+  Views are hash-routed by app.js and rendered into #app:
+    #/            file list (ls -la of the ten .rank files + SEASON_SIM.exe + LEAGUE_INTEL.log)
+    #/t/<slug>    one team file (cat 01_HOES_MAD.rank)
+    #/sim         SEASON_SIM.exe mini-game (./season_sim.exe — body from sim.js)
+    #/intel       league intel (cat LEAGUE_INTEL.log)
+  Layers: #matrix (canvas rain, behind) · #app (content) · #crt (scanlines/vignette, above) · #statusbar (tmux bar)
+          · .adeck (player.js audio deck, fixed bottom-right above the status bar)
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="The Brookdale League 2026 preseason power rankings, decrypted one file at a time.">
+<title>brookdale@league: ~/power-rankings/2026</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000000'/%3E%3Ctext x='4' y='23' font-family='monospace' font-size='18' font-weight='bold' fill='%234af626'%3E%24_%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="matrix" aria-hidden="true"></canvas>
+<main id="app" aria-live="polite"></main>
+<div id="crt" aria-hidden="true"><div class="crt-rollbar"></div></div>
+<footer id="statusbar" aria-label="status bar">
+  <span class="sb-left"><span class="sb-host">brookdale@league</span><span class="sb-path" id="sb-path">~/power-rankings/2026</span></span>
+  <span class="sb-mid" id="sb-log" aria-hidden="true"></span>
+  <span class="sb-right"><span id="sb-read">READ 0/12</span><span class="sb-sep">│</span><span id="sb-clock">--:--:--</span></span>
+</footer>
+<noscript><pre class="noscript">brookdale@league:~$ ./decrypt
+[FAIL] JavaScript is disabled — the power rankings cannot be decrypted without it.</pre></noscript>
+<script src="data.js"></script>
+<script src="writeups.js"></script>
+<script src="history.js"></script>
+<script src="sim.js"></script>
+<script src="app.js"></script>
+<script src="audio/playlist.js"></script>
+<script src="player.js"></script>
+</body>
+</html>
