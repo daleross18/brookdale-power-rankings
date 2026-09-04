@@ -341,7 +341,7 @@
       { tag: 'ok', text: 'Mounting ' + IMPORT_PATH.replace(/\/\.\..*$/, ''), wait: 110 },
       { tag: 'ok', text: 'Bypassing Yahoo Fantasy firewall (ID# ' + LEAGUE_ID + ')', wait: 150 },
       { tag: 'ok', text: 'Importing rosters .......... ' + TEAMS.length + '/' + TEAMS.length + ' (' + players + ' players)', wait: 110 },
-      { tag: 'ok', text: 'Loading ' + hist + ' seasons of history ... ' + champs.length + ' titles, ' + distinct + ' champions found, ' + stillHere + ' of them still here', wait: 150 },
+      { tag: 'ok', text: 'Loading ' + hist + ' seasons of history ... ' + champs.length + ' titles, ' + distinct + ' champions found', wait: 150 },
       { tag: 'warn', text: q + ' players flagged Q, ' + cel + ' flagged CEL (Jacobs, violence >= 1.0)', wait: 130 },
       { cls: 'bar', wait: 0 }
     ];
