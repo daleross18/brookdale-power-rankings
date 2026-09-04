@@ -778,7 +778,7 @@
     const prev = TEAMS[(idx - 1 + TEAMS.length) % TEAMS.length], next = TEAMS[(idx + 1) % TEAMS.length];
     const goPrev = () => navigate('#/t/' + prev.slug), goNext = () => navigate('#/t/' + next.slug), goHome = () => navigate('#/');
 
-    const p = pane([el('b', { text: 'cat' }), ' ' + t.file], 'rank ' + t.rank + '/' + TEAMS.length + ' · ' + kb(JSON.stringify(t).length), 'detail');
+    const p = pane([el('b', { text: 'cat' }), ' ' + t.file], '', 'detail');
     const nav = el('div', { class: 'dnav' },
       tbtn('ESC', '← back to index', goHome), tbtn('←', 'prev #' + rank2(prev.rank), goPrev, 'prev: ' + prev.file), tbtn('→', 'next #' + rank2(next.rank), goNext, 'next: ' + next.file),
       el('span', { class: 'sp' }), el('span', { class: 'rbadge', text: 'READ ✓' }));
