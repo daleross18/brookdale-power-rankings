@@ -381,7 +381,7 @@ table.grid td.na { color: var(--green-ghost); }
 .sb-mid { flex: 1; color: var(--muted); padding: 0 12px; white-space: nowrap; overflow: hidden; min-width: 0; }
 .sb-mid span { margin-right: 3ch; }
 .sb-mid .rx { color: var(--green); } .sb-mid .tx { color: var(--blue); } .sb-mid .w { color: var(--amber); }
-.sb-right { padding: 0 10px; color: var(--green); white-space: nowrap; gap: 8px; flex: none; margin-left: auto; }
+.sb-right { display: none; }   /* READ counter + clock removed (user request) */
 .sb-sep { color: var(--green-dim); }
 
 /* ---------- 9. effects ---------- */

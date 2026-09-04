@@ -22,7 +22,7 @@ window.BROOKDALE = {
     {
       rank: 1,
       slug: "hoes-mad",
-      file: "01_HOES_MAD.rank",
+      file: "HOES_MAD.rank",
       name: "Hoes Mad",
       manager: "Alex (ANK)",
       subtitle: "ALL GAS NO BRAKES",
@@ -70,7 +70,7 @@ window.BROOKDALE = {
     {
       rank: 2,
       slug: "hammertime",
-      file: "02_HAMMERTIME.rank",
+      file: "HAMMERTIME.rank",
       name: "HammerTime",
       manager: "Caleb",
       subtitle: "I'M GOING TO ASSUME BLIND LUCK",
@@ -118,7 +118,7 @@ window.BROOKDALE = {
     {
       rank: 3,
       slug: "mr-glass-reborn",
-      file: "03_MR._GLASS_REBORN.rank",
+      file: "MR._GLASS_REBORN.rank",
       name: "Mr. Glass Reborn",
       manager: "Gabe",
       subtitle: "HE'S CHEATING BUT I CAN'T PROVE IT",
@@ -166,7 +166,7 @@ window.BROOKDALE = {
     {
       rank: 4,
       slug: "saxwillruintheleague",
-      file: "04_SAXWILLRUINTHELEAGUE.rank",
+      file: "SAXWILLRUINTHELEAGUE.rank",
       name: "SaxWillRuinTheLeague",
       manager: "Dale",
       subtitle: "I AM INEVITABLE",
@@ -214,7 +214,7 @@ window.BROOKDALE = {
     {
       rank: 5,
       slug: "killer-whales",
-      file: "05_KILLER_WHALES.rank",
+      file: "KILLER_WHALES.rank",
       name: "🐳 Killer Whales 🐳",
       manager: "Chris",
       subtitle: "HE'S CHEATING AND I CAN PROVE IT",
@@ -262,7 +262,7 @@ window.BROOKDALE = {
     {
       rank: 6,
       slug: "schkattebooboo",
-      file: "06_SCHKATTEBOOBOO.rank",
+      file: "SCHKATTEBOOBOO.rank",
       name: "Schkattebooboo",
       manager: "Ben",
       subtitle: "HOW TO BUILD A TEAM THAT IMPLODES BY WEEK 11",
@@ -310,7 +310,7 @@ window.BROOKDALE = {
     {
       rank: 7,
       slug: "eyes-wide-shut",
-      file: "07_EYES_WIDE_SHUT.rank",
+      file: "EYES_WIDE_SHUT.rank",
       name: "Eyes Wide Shut",
       manager: "Van",
       subtitle: "NO GAS NO BRAKES",
@@ -358,7 +358,7 @@ window.BROOKDALE = {
     {
       rank: 8,
       slug: "dhhate",
-      file: "08_DHHATE.rank",
+      file: "DHHATE.rank",
       name: "DHhate",
       manager: "Oliver",
       subtitle: "GET READY TO GET GOBBLED",
@@ -406,7 +406,7 @@ window.BROOKDALE = {
     {
       rank: 9,
       slug: "mac-and-movies",
-      file: "09_MAC_AND_MOVIES.rank",
+      file: "MAC_AND_MOVIES.rank",
       name: "Mac and Movies",
       manager: "Ethan",
       subtitle: "HAS HE LOST HIS TOUCH?",
@@ -454,7 +454,7 @@ window.BROOKDALE = {
     {
       rank: 10,
       slug: "hogwash",
-      file: "10_HOGWASH.rank",
+      file: "HOGWASH.rank",
       name: "Hogwash 🐷",
       manager: "Belsky",
       subtitle: "ALL BRAKES NO GAS",
