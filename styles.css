@@ -193,7 +193,7 @@ table.tt td.worst { color: var(--red); }
 .row .file { color: var(--text); text-decoration: none; }
 .row .mgr { color: var(--text); }
 .row .rec { color: var(--text); }
-.row .tag, .lshead .tag { border: 0; padding: 0; margin: 0; font-size: 12.5px; color: var(--muted); font-style: italic; }
+.row .tag, .lshead .tag { border: 0; padding: 0; margin: 0; font-size: 12.5px; color: var(--amber); font-style: normal; }
 .lshead .tag { font-style: normal; font-size: inherit; }
 .row .badge { color: var(--green); font-size: 11px; margin-left: 1ch; font-style: normal; }
 /* profile thumbnail: green-phosphor duotone that snaps to full colour on hover / focus / cursor */
@@ -425,6 +425,7 @@ span.cur::after { content: "▮"; color: var(--green); animation: blink 1s steps
   .row .br { order: 5; display: block; flex-basis: 100%; height: 0; }
   .row .perms { order: 6; } .row .mgr { order: 7; } .row .rec { order: 8; }
   .row > .tag { order: 10; display: inline; }
+  .row > .rec { display: none; }   /* projected record hidden on mobile (kept on the team page) */
   .row .thumb, .row .pthumb, .row .noimg { width: 34px; }
   .row .pthumb, .row .noimg { height: 34px; }
   .row .size { display: none; }

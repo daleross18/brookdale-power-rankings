@@ -265,7 +265,7 @@ window.BROOKDALE = {
       file: "SCHKATTEBOOBOO.rank",
       name: "Schkattebooboo",
       manager: "Ben",
-      subtitle: "HOW TO BUILD A TEAM THAT IMPLODES BY WEEK 11",
+      subtitle: "THE OSAMA BIN LADEN OF FANTASY",
       profile: "img/schkattebooboo-profile.jpg",
       meme: "img/schkattebooboo-meme.jpg",
       thumb: "img/schkattebooboo-meme.jpg",
