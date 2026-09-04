@@ -555,6 +555,7 @@
       span('k', 'ESC'), '                (in a file) back to this index\n',
       span('k', '← / →'), '              (in a file) previous / next ranked team\n',
       span('k', 'R'), '                  reset read status (asks y/n)\n',
+      span('k', 'b'), '                  replay the boot + rank reveal\n',
       span('k', '?'), '                  toggle this help\n',
       span('k', 'any key / tap'), '      skip animations\n')));
     body.append(foot, statusEl, help);
@@ -647,6 +648,7 @@
         case 'End': e.preventDefault(); setCur(rows.length - 1); break;
         case 'Enter': if (curIdx >= 0) { e.preventDefault(); open(rows[curIdx].dataset.id); } break;
         case 'r': case 'R': e.preventDefault(); askReset(); break;
+        case 'b': case 'B': e.preventDefault(); navigate('#/boot'); break;
         case '?': e.preventDefault(); toggleHelp(); break;
         case 'Escape': if (!help.hidden) toggleHelp(); status(''); break;
         default: break;
@@ -1155,15 +1157,21 @@
     if ((m = h.match(/^#\/t\/([A-Za-z0-9_-]+)/))) return { view: 'team', slug: m[1] };
     if (/^#\/intel/.test(h)) return { view: 'intel' };
     if (/^#\/sim/.test(h)) return { view: 'sim' };
+    if (/^#\/boot/.test(h)) return { view: 'boot' };
     return { view: 'list' };
   }
   function navigate(hash) { if (location.hash === hash) render(); else location.hash = hash; }
+  function replayBoot() {
+    decoyDone = false;
+    runBoot(() => { booted = true; try { history.replaceState(null, '', '#/'); } catch (e) { location.hash = '#/'; } render(); });
+  }
   function render() {
     cancelAnimations();
     app.textContent = '';
     app.classList.remove('flash');
     window.scrollTo(0, 0);
     const r = parseHash();
+    if (r.view === 'boot') { replayBoot(); return; }   // #/boot replays the boot + decoy on demand, then lands on the list
     try {
       if (r.view === 'team') renderTeam(r.slug);
       else if (r.view === 'intel') renderIntel();
@@ -1206,6 +1214,7 @@
     setTimeout(() => { try { if (!watchDeck()) window.addEventListener('load', watchDeck); } catch (e) { console.error(e); } }, 0);
     window.addEventListener('hashchange', () => { if (booted) render(); });
     const soft = isSoftReload();
+    try { const nav = performance.getEntriesByType('navigation')[0]; console.info('[boot] nav=' + (nav ? nav.type : '?') + ' soft=' + soft + ' ' + performance.getEntriesByType('resource').filter((r) => /\/(styles\.css|history\.js|data\.js)(\?|$)/.test(r.name)).map((r) => r.name.split('/').pop().split('?')[0] + ':' + r.transferSize + '/' + r.encodedBodySize).join(' ')); } catch (e) { /* ignore */ }
     runBoot(() => { booted = true; if (soft || parseHash().view !== 'list') decoyDone = true; render(); }, soft);   // deep links + soft reloads bypass the decoy reveal
   }
   init();
