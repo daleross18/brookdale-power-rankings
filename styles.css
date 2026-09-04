@@ -168,7 +168,7 @@ table.tt td.worst { color: var(--red); }
 .ls .lshead { color: var(--muted); padding: 0 6px 2px; border-bottom: 1px solid var(--green-ghost); margin-bottom: 4px; }
 .row, .lshead {
   display: grid;
-  grid-template-columns: 4ch 11ch 5ch 4ch 40px minmax(24ch, 30ch) 11ch 8ch 5ch minmax(0, 1fr);
+  grid-template-columns: 4ch 11ch 5ch 4ch 40px minmax(24ch, 30ch) 11ch 8ch minmax(0, 1fr);
   gap: 0 1.5ch;
   align-items: baseline;
 }
@@ -193,7 +193,6 @@ table.tt td.worst { color: var(--red); }
 .row .file { color: var(--text); text-decoration: none; }
 .row .mgr { color: var(--text); }
 .row .rec { color: var(--text); }
-.row .pct { color: var(--green); }
 .row .tag, .lshead .tag { border: 0; padding: 0; margin: 0; font-size: 12.5px; color: var(--muted); font-style: italic; }
 .lshead .tag { font-style: normal; font-size: inherit; }
 .row .badge { color: var(--green); font-size: 11px; margin-left: 1ch; font-style: normal; }
@@ -411,7 +410,7 @@ span.cur::after { content: "▮"; color: var(--green); animation: blink 1s steps
 /* ---------- 10. responsive ---------- */
 @media (max-width: 900px) {
   .roster { grid-template-columns: minmax(0, 1fr); }
-  .row, .lshead { grid-template-columns: 4ch 11ch 4ch 40px minmax(20ch, 1fr) 10ch 7ch 4ch; }
+  .row, .lshead { grid-template-columns: 4ch 11ch 4ch 40px minmax(20ch, 1fr) 10ch 7ch; }
   .row > .size, .lshead > .size, .row > .tag, .lshead > .tag { display: none; }
 }
 @media (max-width: 720px) {
@@ -424,7 +423,7 @@ span.cur::after { content: "▮"; color: var(--green); animation: blink 1s steps
   .row .chk { order: 1; } .row .thumb { order: 2; } .row .rank { order: 3; }
   .row .file { order: 4; flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
   .row .br { order: 5; display: block; flex-basis: 100%; height: 0; }
-  .row .perms { order: 6; } .row .mgr { order: 7; } .row .rec { order: 8; } .row .pct { order: 9; }
+  .row .perms { order: 6; } .row .mgr { order: 7; } .row .rec { order: 8; }
   .row > .tag { order: 10; display: inline; }
   .row .thumb, .row .pthumb, .row .noimg { width: 34px; }
   .row .pthumb, .row .noimg { height: 34px; }

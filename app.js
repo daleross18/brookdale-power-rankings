@@ -492,7 +492,7 @@
     const total = el('div', { class: 'dim ph', text: 'total ' + TOTAL_FILES });
     const lshead = el('div', { class: 'lshead ph' },
       span('chk', ''), span('perms', 'mode'), span('size', 'size'), span('rank', 'rank'), span('thumb', ''), span('file', 'file'),
-      span('mgr', 'owner'), span('rec', 'proj'), span('pct', 'po%'), span('tag', 'tagline'));
+      span('mgr', 'owner'), span('rec', 'proj'), span('tag', 'tagline'));
     const ls = el('div', { class: 'ls' + (decoy ? ' decoy' : ''), attr: { role: 'list' } });
     if (decoy) body.appendChild(decoyLine);
     body.append(total, lshead, ls);
@@ -507,7 +507,7 @@
       } else th.appendChild(span('noimg', d.glyph || '≡'));
       const r = el('div', { class: 'row ph' + (d.cls ? ' ' + d.cls : ''), attr: { role: 'listitem', tabindex: '0', 'data-id': id, 'aria-label': d.file } },
         span('chk', ''), span('perms', ''), span('size', d.size), span('rank', d.rank), th,
-        el('span', { class: 'file' }, d.file, d.exec ? span('xtag', '[EXEC]') : null), span('br', ''), span('mgr', d.mgr), span('rec', d.rec), span('pct', d.pct),
+        el('span', { class: 'file' }, d.file, d.exec ? span('xtag', '[EXEC]') : null), span('br', ''), span('mgr', d.mgr), span('rec', d.rec),
         el('span', { class: 'tag' }, d.tag ? d.tag : '', span('badge', '')));
       r.rw = d.rw; r.ro = d.ro; r.dataset.rank = d.rank;
       r.addEventListener('click', () => open(id));
@@ -519,16 +519,16 @@
       const w = WRITEUPS[t.slug] || {};
       rows.push(rowNode(t.slug, {
         size: kb(JSON.stringify(t).length), rank: '#' + rank2(t.rank), file: t.file, img: t.profile || '',
-        mgr: t.manager, rec: t.projectedRecord, pct: (t.playoff && isNum(t.playoff.pct) ? t.playoff.pct + '%' : '—'),
+        mgr: t.manager, rec: t.projectedRecord,
         tag: (w.tagline || '').trim() || (t.subtitle || '').trim() || '', rw: '-rw-r--r--', ro: '-r--r--r--'
       }));
     });
     rows.push(rowNode(SIM_ID, {   // executable: -rwxr-xr-x, bright green bold name + [EXEC] tag → #/sim (sits after the team files, before the log)
-      size: kb(24576), rank: 'exe', file: 'SEASON_SIM.exe', mgr: 'league', rec: '14 wk', pct: '',
+      size: kb(24576), rank: 'exe', file: 'SEASON_SIM.exe', mgr: 'league', rec: '',
       tag: 'roll a ' + SEASON + ' season · 10,000-season monte carlo · toilet bowl', rw: '-rwxr-xr-x', ro: '-rwxr-xr-x', cls: 'exe', glyph: '▶', exec: true
     }));
     rows.push(rowNode(INTEL_ID, {
-      size: kb(JSON.stringify(HISTORY).length), rank: 'log', file: 'LEAGUE_INTEL.log', mgr: 'league', rec: (HISTORY.seasons || []).length + ' szn', pct: '',
+      size: kb(JSON.stringify(HISTORY).length), rank: 'log', file: 'LEAGUE_INTEL.log', mgr: 'league', rec: '',
       tag: 'champions · all-time table · insights · standings grid', rw: '-r-xr-xr-x', ro: '-r-xr-xr-x', cls: 'intel', glyph: '≡'
     }));
     /* decoy: team rows enter in REVERSE rank order wearing fake position numbers; extra rows (intel / sim) stay at the bottom, dimmed */
