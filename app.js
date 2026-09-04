@@ -343,7 +343,6 @@
       { tag: 'ok', text: 'Importing rosters .......... ' + TEAMS.length + '/' + TEAMS.length + ' (' + players + ' players)', wait: 110 },
       { tag: 'ok', text: 'Loading ' + hist + ' seasons of history ... ' + champs.length + ' titles, ' + distinct + ' champions found, ' + stillHere + ' of them still here', wait: 150 },
       { tag: 'warn', text: q + ' players flagged Q, ' + cel + ' flagged CEL (Jacobs, violence >= 1.0)', wait: 130 },
-      { tag: 'ok', text: 'Compiling winCondition() x' + TEAMS.length + ' ... ' + (TEAMS.length - failures) + ' passed, ' + failures + ' FAILURE: WIN CONDITION NOT ATTAINABLE', wait: 200 },
       { cls: 'bar', wait: 0 }
     ];
   }
