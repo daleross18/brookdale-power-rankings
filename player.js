@@ -3,7 +3,7 @@
 //  except one small play/pause button pinned at the bottom of the screen (class .adeck). M also toggles play/pause.
 //
 //  Browsers block sound until the visitor interacts once; the boot screen's "press any key" / first click is that
-//  gesture, so playback starts there. Track position is remembered across reloads (localStorage).
+//  gesture, so playback starts there. Every visit starts from track 1 in playlist order.
 //  Self-contained: builds its own DOM and injects its own CSS; no dependency on app.js.
 // ============================================================================
 (function () {
@@ -12,9 +12,9 @@
   var playlist = (window.AUDIO_PLAYLIST || []).filter(function (t) { return t && t.file; });
   if (!playlist.length) return;
 
-  var state = load({ index: 0 });
-  function load(d) { try { var raw = localStorage.getItem(STORE_KEY); return raw ? Object.assign({}, d, JSON.parse(raw)) : d; } catch (e) { return d; } }
-  function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) { /* ignore */ } }
+  // Every page load starts from track 1 (nothing is remembered between visits).
+  var state = { index: 0 };
+  function save() { /* intentionally no persistence */ }
 
   var css = '' +
     '.adeck{position:fixed;right:14px;bottom:34px;z-index:60;font-family:"IBM Plex Mono","JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:1}' +
@@ -28,7 +28,7 @@
   audio.preload = 'auto';
   // Automated/headless browsers (site checks) get a muted player so they never make noise on the machine running them.
   if (navigator.webdriver) audio.muted = true;
-  var idx = Math.min(Math.max(0, state.index | 0), playlist.length - 1);
+  var idx = 0;
   var wantPlaying = true;
 
   var deck = document.createElement('div'); deck.className = 'adeck';
