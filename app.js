@@ -633,7 +633,7 @@
     anim.on(document, 'keydown', (e) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       if (confirming) {
-        if (e.key === 'y' || e.key === 'Y') { store.reset(); refresh(); status('read status cleared — ' + TOTAL_FILES + ' files re-encrypted.', 'ok'); }
+        if (e.key === 'y' || e.key === 'Y') { store.reset(); refresh(); status('read status cleared.', 'ok'); }
         else if (e.key === 'n' || e.key === 'N' || e.key === 'Escape') status('cancelled.');
         else return;
         confirming = false; e.preventDefault(); return;
