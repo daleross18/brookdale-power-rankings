@@ -489,13 +489,12 @@
     let locked = decoy, decoyT0 = 0, decoyTimer = null;
 
     const decoyLine = el('div', { class: 'stat-hdr decoy-hdr ph', attr: { 'aria-hidden': 'true' } });
-    const total = el('div', { class: 'dim ph', text: 'total ' + TOTAL_FILES });
     const lshead = el('div', { class: 'lshead ph' },
       span('chk', ''), span('perms', 'mode'), span('size', 'size'), span('rank', 'rank'), span('thumb', ''), span('file', 'file'),
       span('mgr', 'owner'), span('rec', 'proj'), span('tag', 'tagline'));
     const ls = el('div', { class: 'ls' + (decoy ? ' decoy' : ''), attr: { role: 'list' } });
     if (decoy) body.appendChild(decoyLine);
-    body.append(total, lshead, ls);
+    body.append(lshead, ls);
 
     const rows = [];
     function rowNode(id, d) {
@@ -624,7 +623,7 @@
     refresh();
     const seq = new Seq();
     seq.add((instant) => typewriter(cmd, 'ls -la --sort=rank', instant ? Infinity : 40), 520)
-      .add(() => { decoyLine.classList.remove('ph'); total.classList.remove('ph'); lshead.classList.remove('ph'); startDecoy(); }, 140)
+      .add(() => { decoyLine.classList.remove('ph'); lshead.classList.remove('ph'); startDecoy(); }, 140)
       .add(() => stagger(initialOrder, 60), rows.length * 60 + 80)
       .add(() => { foot.classList.remove('ph'); prompt.appendChild(span('cur', '')); }, 0)
       .start();
