@@ -32,7 +32,9 @@
   const SIM_ID = 'sim';                       // SEASON_SIM.exe → #/sim (module sim.js → window.SIM)
   const TOTAL_FILES = TEAMS.length + 2;       // 10 team files + SEASON_SIM.exe + LEAGUE_INTEL.log = 12
   const HOME_PATH = '~/power-rankings/' + SEASON;
-  const REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  // The OS "Reduce Motion" setting is deliberately ignored (the animations are the point of this site);
+  // append ?reduce to the URL to get the instant, motion-free variant.
+  const REDUCED = /[?&]reduce\b/.test(location.search);
   const GLYPHS = '!@#$%&*<>?/\\|[]{}=+-_~^01ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
 
   const $ = (sel, root) => (root || document).querySelector(sel);
