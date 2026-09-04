@@ -24,7 +24,7 @@ window.BROOKDALE = {
       slug: "hoes-mad",
       file: "HOES_MAD.rank",
       name: "Hoes Mad",
-      manager: "Alex (ANK)",
+      manager: "ANK",
       subtitle: "ALL GAS NO BRAKES",
       profile: "img/hoes-mad-profile.jpg",
       meme: "img/hoes-mad-meme.jpg",

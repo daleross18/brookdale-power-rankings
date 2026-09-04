@@ -667,6 +667,7 @@
     const add = (s, cls, min) => { s = String(s || '').replace(/\s+/g, ' ').trim(); if (s.length >= (min || 3) && !map.has(s.toLowerCase())) map.set(s.toLowerCase(), cls); };
     const addSafe = (s, cls, min) => { if (!STOP.has(String(s || '').trim().toLowerCase())) add(s, cls, min); };
     // managers + nicknames first, so "Chris" / "Sam" beat the player first-name rule below
+    Object.keys(HISTORY.managers || {}).forEach((n) => add(n, 'wu-mgr', 2));   // real first names from the league history (Alex, Belsky, …)
     TEAMS.forEach((t) => { add(firstNameOf(t.manager), 'wu-mgr', 2); (String(t.manager).match(/\(([^)]+)\)/g) || []).forEach((n) => add(n.slice(1, -1), 'wu-mgr', 2)); });
     MANAGER_WORDS.forEach((n) => add(n, 'wu-mgr', 2));
     // the ten fantasy teams (with and without emoji) + the league
@@ -860,7 +861,7 @@
     const roster = el('div', { class: 'roster ph' }, box('STARTERS', scrollx(tS)), box('BENCH', scrollx(tB)));
 
     /* history */
-    const m = HISTORY.managers[firstNameOf(t.manager)];
+    const m = HISTORY.managers[firstNameOf(t.manager)] || Object.keys(HISTORY.managers || {}).map((k) => HISTORY.managers[k]).find((x) => x.slug === t.slug);   // display name may be a nickname (ANK) — fall back to the slug
     const hist = el('div', { class: 'ph' });
     let histRows = [];
     if (!m) {
@@ -952,7 +953,7 @@
     const departed = new Set(HISTORY.departedManagers || []);
     const champs = (HISTORY.champions || []).slice().sort((a, b) => a.year - b.year);
     const seasons = (HISTORY.seasons || []).slice().sort((a, b) => a.year - b.year);
-    const teamByFirst = {}; TEAMS.forEach((t) => { teamByFirst[firstNameOf(t.manager)] = t; });
+    const teamByFirst = {}; TEAMS.forEach((t) => { teamByFirst[firstNameOf(t.manager)] = t; const hm = Object.keys(HISTORY.managers || {}).find((k) => HISTORY.managers[k].slug === t.slug); if (hm) teamByFirst[hm] = t; });
     const isCurrent = (name) => !!HISTORY.managers[name] || !!teamByFirst[name];
     const lastYear = seasons.length ? seasons[seasons.length - 1].year : SEASON - 1;
     const gByYear = {}; mgrs.forEach((m) => (m.seasons || []).forEach((s) => { if (isNum(s.g)) gByYear[s.year] = s.g; }));
