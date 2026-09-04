@@ -206,8 +206,7 @@ window.SIM = (function () {
     const grid = el('div', 'grid');
     const left = el('div'), right = el('div');
     grid.appendChild(left); grid.appendChild(right); root.appendChild(grid);
-    const note = el('div', 'note', 'model: weekly score ~ N(strength, ' + SD + '); strengths calibrated so playoff odds match the implied chances in each file. ' +
-      'top 6 make the playoffs (1 & 2 bye); 7–10 play the consolation bracket; the toilet bowl loser finishes LAST. ties: scores within ' + TIE_WINDOW + ' pts (' + BELSKY_TIE_WINDOW + ' if Hogwash is involved — only Belsky would tie).');
+    const note = el('div', 'note', '');   // (model description removed — user request)
     root.appendChild(note);
     container.appendChild(root);
 

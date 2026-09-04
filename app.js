@@ -342,10 +342,7 @@
       { tag: 'ok', text: 'Bypassing Yahoo Fantasy firewall (ID# ' + LEAGUE_ID + ')', wait: 150 },
       { tag: 'ok', text: 'Importing rosters .......... ' + TEAMS.length + '/' + TEAMS.length + ' (' + players + ' players)', wait: 110 },
       { tag: 'ok', text: 'Loading ' + hist + ' seasons of history ... ' + champs.length + ' titles, ' + distinct + ' champions found, ' + stillHere + ' of them still here', wait: 150 },
-      { tag: 'warn', text: (belsky ? firstNameOf(belsky.manager) : 'Belsky') + ' detected. Adjusting tie probability +∞', wait: 190 },
-      { tag: 'ok', text: 'Calibrating burger status: NOT EATEN', wait: 110 },
       { tag: 'warn', text: q + ' players flagged Q, ' + cel + ' flagged CEL (Jacobs, violence >= 1.0)', wait: 130 },
-      { tag: 'fail', text: "Locating Ben's league dues .................. NOT FOUND", wait: 190 },
       { tag: 'ok', text: 'Compiling winCondition() x' + TEAMS.length + ' ... ' + (TEAMS.length - failures) + ' passed, ' + failures + ' FAILURE: WIN CONDITION NOT ATTAINABLE', wait: 200 },
       { cls: 'bar', wait: 0 }
     ];
